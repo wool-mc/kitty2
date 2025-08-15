@@ -6,13 +6,5 @@ export interface Kitty {
 export interface FavorKitty {
   id: string;
   image: Kitty;
-  sub_id: string
-}
-
-interface ImportMetaEnv {
-  readonly API_KEY: string
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv
+  sub_id: string;
 }

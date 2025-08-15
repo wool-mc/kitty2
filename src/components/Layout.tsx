@@ -1,22 +1,15 @@
-import type { FC } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import { Header } from './Header';
 
-const Layout: FC = () => {
-    return (
-        <div className="layout">
-            <header className="nav-bar">
-                <nav className="nav">
-                    <Link className="nav-links" to="/">Котики</Link>
-                    <Link className="nav-links" to="/fav">Избранные Котики</Link>
-                </nav>
-            </header>
-            <main className="main">
-                <Outlet />
-            </main>
-        </div>
-    )
-
-}
-    
+const Layout = () => {
+  return (
+    <div className="layout">
+      <Header />
+      <main className="main">
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
 export default Layout;
