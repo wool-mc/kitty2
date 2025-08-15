@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import  AllKitty  from '../Pages/AllKitty';
-import  FavKitty  from '../Pages/FavKitty';
+import AllKitty from '../Pages/AllKitty';
+import FavKitty from '../Pages/FavKitty';
 import Layout from '../components/Layout';
 
 const router = createBrowserRouter([
@@ -19,4 +19,4 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router
+export default router;
