@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosResponse } from 'axios';
-import type { FavorKitty, Kitty } from '../types/index.ts';
+import type { AddFavoriteResponse, ApiResponse, FavoriteKitty, Kitty, NormalizedFavorites } from '../types/index.ts';
 
 if (!import.meta.env.VITE_API_KEY) {
   throw new Error('API key not found in environment variables');
@@ -19,11 +19,23 @@ console.log(API_KEY);
 
 export const getKittys = (): Promise<AxiosResponse<Kitty[]>> => api.get('/images/search?limit=10');
 
-export const addKittys = (data: { image_id: string; sub_id?: string }): Promise<AxiosResponse> =>
-  api.post('/favourites', data);
+export const addKittys = (
+  data: { image_id: string; sub_id?: string }
+): Promise<AxiosResponse<AddFavoriteResponse>> =>
+  api.post<AddFavoriteResponse>('/favourites', data);
 
-export const removeKittys = (favouriteId: string): Promise<AxiosResponse> =>
-  api.delete(`/favourites/${favouriteId}`);
+export const removeKittys = (
+  favouriteId: string
+): Promise<AxiosResponse<ApiResponse>> =>
+  api.delete<ApiResponse>(`/favourites/${favouriteId}`);
 
-export const getFavKittys = (): Promise<AxiosResponse<FavorKitty[]>> =>
-  api.get('/favourites?limit=10&sub_id=user123');
+export const getFavKittys = (): Promise<AxiosResponse<NormalizedFavorites>> =>
+  api.get<FavoriteKitty[]>("/favourites?limit=10&sub_id=user123").then(res => {
+    const kittys: Kitty[] = res.data.map(f => f.image);
+    const favMap = new Map(res.data.map(f => [f.image.id, f.id]));
+
+    return {
+      ...res,
+      data: { kittys, favMap },
+    };
+  });

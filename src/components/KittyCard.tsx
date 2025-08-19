@@ -1,25 +1,19 @@
-import type { FavorKitty, Kitty } from '@/types';
-import { LikeButton } from './LikeButton';
+import type { Kitty } from "@/types";
+import { LikeButton } from "./LikeButton"
+
+import styles from './KittyCard.module.css'
 
 type KittyCardProps = {
-  kittys: (Kitty | FavorKitty)[];
-  favorites: Map<string, string>;
-  handleFavoriteClick: (imageid: string) => void;
+  kitty: Kitty;
+  isFavorite: boolean;
+  handleFavoriteClick: (imageId: string) => void;
 };
 
-function isKitty(kitty: Kitty | FavorKitty): kitty is Kitty {
-  return 'url' in kitty;
-}
-
-export const KittyCard = ({ kittys, favorites, handleFavoriteClick }: KittyCardProps) => {
-  return (
-    <ul className="kittys">
-      {kittys.map(kitty => (
-        <li className="kitty" key={kitty.id}>
-          <img className="kittypic" src={isKitty(kitty) ? kitty.url : kitty.image.url} />
-          <LikeButton imageId={kitty.id} onClick={handleFavoriteClick} favorites={favorites} />
+export const KittyCard = ({kitty, isFavorite, handleFavoriteClick}: KittyCardProps) => {
+    return (
+        <li className={styles.kitty} key={kitty.id}>
+          <img className={styles.kittypic} src={kitty.url} />
+          <LikeButton imageId={kitty.id} onClick={handleFavoriteClick} isFavorite={isFavorite} className={styles.button} iconClassName={styles.icon}/>
         </li>
-      ))}
-    </ul>
-  );
-};
+    )
+}

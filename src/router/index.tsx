@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AllKitty from '../Pages/AllKitty';
-import FavKitty from '../Pages/FavKitty';
-import Layout from '../components/Layout';
+import {AllKitty} from '../Pages/AllKitty';
+import {FavKitty} from '../Pages/FavKitty';
+import {Layout} from '../components/Layout';
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
@@ -19,4 +19,3 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router;

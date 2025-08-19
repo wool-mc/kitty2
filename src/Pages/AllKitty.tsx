@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import type { FavorKitty, Kitty } from '../types';
+import type { Kitty } from '../types';
 import { addKittys, getFavKittys, getKittys, removeKittys } from '../services/api';
 import { getErrorMessage } from '../utility/getErrorMessage';
-import { KittyCard } from '../components/KittyCard';
+import { KittyCardList } from '../components/KittyCardList';
 
-const AllKitty = () => {
+export const AllKitty = () => {
   const [kittys, setKittys] = useState<Kitty[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -38,15 +38,12 @@ const AllKitty = () => {
     const fetchKittys = async () => {
       try {
         setLoading(true);
+
         const response = await getKittys();
         const favResponse = await getFavKittys();
 
         setKittys(response.data || []);
-
-        const favMap = new Map(
-          (favResponse.data as FavorKitty[]).map(fav => [fav.image.id, fav.id]),
-        );
-        setFavorites(favMap);
+        setFavorites(favResponse.data.favMap)
       } catch (err) {
         setError(getErrorMessage(err));
       } finally {
@@ -62,9 +59,7 @@ const AllKitty = () => {
 
   return (
     <>
-      <KittyCard kittys={kittys} favorites={favorites} handleFavoriteClick={handleFavoriteClick} />
+      <KittyCardList kittys={kittys} favorites={favorites} handleFavoriteClick={handleFavoriteClick} />
     </>
   );
 };
-
-export default AllKitty;

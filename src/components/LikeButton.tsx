@@ -1,22 +1,24 @@
 import OutlineHeartSVG from '../components/icons/OutlineHeart.svg?react';
 import FilledHeartSVG from '../components/icons/FilledHeart.svg?react';
 
+
 type LikeButtonProps = {
-  favorites: Map<string, string>;
+  isFavorite: boolean;
   onClick: (id: string) => void;
   imageId: string;
+  className?: string;
+  iconClassName?: string
 };
 
-export const LikeButton = ({ favorites, onClick, imageId }: LikeButtonProps) => {
-  const isFavorite = favorites.has(imageId);
+export const LikeButton = ({ isFavorite, onClick, imageId, className, iconClassName }: LikeButtonProps) => {
 
   return (
     <button
       onClick={() => onClick(imageId)}
-      className="favheart"
+      className={className}
       title={isFavorite ? 'Добавлено в избранное' : 'Добавить в избранное'}
     >
-      {isFavorite ? <FilledHeartSVG /> : <OutlineHeartSVG />}
+      { isFavorite ? <FilledHeartSVG className={iconClassName}/> : <OutlineHeartSVG className={iconClassName} />}
     </button>
   );
 };

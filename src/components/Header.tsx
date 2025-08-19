@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 
+import styles from './Header.module.css'
+
 export const Header = () => {
   return (
-    <header className="nav-bar">
-      <nav className="nav">
-        <Link className="nav-links" to="/">
+    <header className={styles.navBar}>
+      <nav className={styles.nav}>
+        <Link className={styles.navLinks} to="/">
           Котики
         </Link>
-        <Link className="nav-links" to="/fav">
+        <Link className={styles.navLinks} to="/fav">
           Избранные Котики
         </Link>
       </nav>
