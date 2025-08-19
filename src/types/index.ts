@@ -4,14 +4,14 @@ export interface Kitty {
 }
 
 export interface FavoriteKitty {
-  id: string;
+  id: number;
   image: Kitty;
   sub_id: string;
 }
 
 export interface NormalizedFavorites {
   kittys: Kitty[],
-  favMap: Map<string, string>;
+  favMap: Map<string, number>;
 }
 
 export interface ApiResponse {

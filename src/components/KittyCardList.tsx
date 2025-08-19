@@ -5,7 +5,7 @@ import styles from './KittyCardList.module.css'
 
 type KittyCardListProps = {
   kittys: Kitty[];
-  favorites: Map<string, string>;
+  favorites: Map<string, number>;
   handleFavoriteClick: (imageid: string) => void;
 };
 

@@ -25,7 +25,7 @@ export const addKittys = (
   api.post<AddFavoriteResponse>('/favourites', data);
 
 export const removeKittys = (
-  favouriteId: string
+  favouriteId: number
 ): Promise<AxiosResponse<ApiResponse>> =>
   api.delete<ApiResponse>(`/favourites/${favouriteId}`);
 

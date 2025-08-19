@@ -11,7 +11,6 @@ type LikeButtonProps = {
 };
 
 export const LikeButton = ({ isFavorite, onClick, imageId, className, iconClassName }: LikeButtonProps) => {
-
   return (
     <button
       onClick={() => onClick(imageId)}

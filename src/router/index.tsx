@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import {AllKitty} from '../Pages/AllKitty';
 import {FavKitty} from '../Pages/FavKitty';
 import {Layout} from '../components/Layout';
+import { Kittys } from '../Pages/Kittys';
 
 export const router = createBrowserRouter([
   {
@@ -10,11 +11,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <AllKitty />,
+        element: <Kittys />,
       },
       {
         path: '/fav',
-        element: <FavKitty />,
+        element: <Kittys />,
       },
     ],
   },
